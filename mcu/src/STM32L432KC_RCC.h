@@ -1,5 +1,6 @@
 // STM32L432KC_RCC.h
 // Header for RCC functions
+// Adapted from E155 in class tutorials: https://github.com/HMC-E155/tutorial-clock-configuration
 
 #ifndef STM32L4_RCC_H
 #define STM32L4_RCC_H

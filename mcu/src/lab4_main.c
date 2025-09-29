@@ -18,7 +18,7 @@ Adapted from lab4_starter.c from E155 Lab 4
 
 
 // Pitch in Hz, duration in ms
-const int notes[][2] = {
+const int fe_notes[][2] = {
 {659,	125},
 {623,	125},
 {659,	125},
@@ -131,50 +131,77 @@ const int notes[][2] = {
 
 // Happy Birthday Notes
 // I wrote this in the key of C and used the A4 = 440
-const int notes[][2] = {
-    {264, 250}, // C4 - quarter
-    {264, 250}, // C4 - quarter
-    {297, 500}, // D4 - half
-    {264, 500}, // C4 - half
-    {352, 500}, // F4 - half
-    {330, 1000},// E4 - whole
+// Pitch in Hz, duration in ms
+const int hb_notes[][2] = {
+    {261.6, 250},  // C4 - quarter
+    {261.6, 250},  // C4 - quarter
+    {293.7, 500},  // D4 - half
+    {261.6, 500},  // C4 - half
+    {349.2, 500},  // F4 - half
+    {329.6, 1000}, // E4 - whole
 
-    {264, 250}, // C4 - quarter
-    {264, 250}, // C4 - quarter
-    {297, 500}, // D4 - half
-    {264, 500}, // C4 - half
-    {396, 500}, // G4 - half
-    {352, 1000},// F4 - whole
+    {261.6, 250},  // C4 - quarter
+    {261.6, 250},  // C4 - quarter
+    {293.7, 500},  // D4 - half
+    {261.6, 500},  // C4 - half
+    {392.0, 500},  // G4 - half
+    {349.2, 1000}, // F4 - whole
 
-    {264, 250}, // C4 - quarter
-    {264, 250}, // C4 - quarter
-    {528, 500}, // C5 - half
-    {440, 500}, // A4 - half
-    {352, 500}, // F4 - half
-    {330, 500}, // E4 - half
-    {297, 1000},// D4 - whole
+    {261.6, 250},  // C4 - quarter
+    {261.6, 250},  // C4 - quarter
+    {523.3, 500},  // C5 - half
+    {440.0, 500},  // A4 - half
+    {349.2, 500},  // F4 - half
+    {329.6, 500},  // E4 - half
+    {293.7, 1000}, // D4 - whole
 
-    {466, 250}, // Bb4 - quarter
-    {466, 250}, // Bb4 - quarter
-    {440, 500}, // A4 - half
-    {352, 500}, // F4 - half
-    {396, 500}, // G4 - half
-    {352, 1000},// F4 - whole
+    {466.2, 250},  // Bb4 - quarter
+    {466.2, 250},  // Bb4 - quarter
+    {440.0, 500},  // A4 - half
+    {349.2, 500},  // F4 - half
+    {392.0, 500},  // G4 - half
+    {349.2, 1000}, // F4 - whole
 
-    {0, 0}      
+    {0, 0}         // End
 };
 
+void playTone(int freq, int dur) {
+    setFreq(freq, TIM16);
+    setDur(dur, TIM15);
+}
 
 int main(void) {
 	// configure flash
     configureFlash();
 
-    // configure clock
+    // configure clock (configureClock also configures the PLL)
+    configureClock();
 
-    // configure PLL
+    // Configure TIM15 and TIM16
+    // TIM15 will handle note duration
+    // TIM16 will handle note frequency
+    configureTIM(TIM15);
+    configureTIM(TIM16);
 
+
+
+    // play Fur Elise and Happy Birthday Back to Back (keep alternating)
     while (1) {
+        // play Fur Elise
+        for (int i = 0; (fe_notes[i][0] != 0 || fe_notes[i][1] != 0); i++) {
+            int freq = fe_notes[i][0];
+            int dur  = fe_notes[i][1];
 
+            playTone(freq, dur);
+        }
+
+        // play happy birthday
+        for (int i = 0; (hb_notes[i][0] != 0 || hb_notes[i][1] != 0); i++) {
+            int freq = hb_notes[i][0];
+            int dur  = hb_notes[i][1];
+
+            playTone(freq, dur);
+        }
     }
 	
 }

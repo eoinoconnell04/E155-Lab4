@@ -1,5 +1,6 @@
 // STM32L432KC_GPIO.h
 // Header for GPIO functions
+// Adapted from E155 in class tutorials: https://github.com/HMC-E155/tutorial-clock-configuration
 
 #ifndef STM32L4_GPIO_H
 #define STM32L4_GPIO_H

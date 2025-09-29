@@ -1,5 +1,6 @@
 // STM32L432KC_GPIO.c
 // Source code for GPIO functions
+// Adapted from E155 in class tutorials: https://github.com/HMC-E155/tutorial-clock-configuration
 
 #include "STM32L432KC_GPIO.h"
 
