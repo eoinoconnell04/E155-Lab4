@@ -1,6 +1,21 @@
-// lab4_starter.c
-// Fur Elise, E155 Lab 4
-// Updated Fall 2024
+/*
+Author: Eoin O'Connell
+Email: eoconnell@hmc.edu
+Date: Sep. 28, 2025
+File function: Play Fur Elise by toggeling GPIO pin at different frequencies for different durations
+
+Adapted from lab4_starter.c from E155 Lab 4
+*/
+
+
+// Include necessary header files:
+
+#include "STM32L432KC_FLASH.h"
+#include "STM32L432KC_GPIO.h"
+#include "STM32L432KC_RCC.h"
+
+
+
 
 // Pitch in Hz, duration in ms
 const int notes[][2] = {
@@ -114,7 +129,52 @@ const int notes[][2] = {
 {440,	500},
 {  0,	0}};
 
+// Happy Birthday Notes
+// I wrote this in the key of C and used the A4 = 440
+const int notes[][2] = {
+    {264, 250}, // C4 - quarter
+    {264, 250}, // C4 - quarter
+    {297, 500}, // D4 - half
+    {264, 500}, // C4 - half
+    {352, 500}, // F4 - half
+    {330, 1000},// E4 - whole
+
+    {264, 250}, // C4 - quarter
+    {264, 250}, // C4 - quarter
+    {297, 500}, // D4 - half
+    {264, 500}, // C4 - half
+    {396, 500}, // G4 - half
+    {352, 1000},// F4 - whole
+
+    {264, 250}, // C4 - quarter
+    {264, 250}, // C4 - quarter
+    {528, 500}, // C5 - half
+    {440, 500}, // A4 - half
+    {352, 500}, // F4 - half
+    {330, 500}, // E4 - half
+    {297, 1000},// D4 - whole
+
+    {466, 250}, // Bb4 - quarter
+    {466, 250}, // Bb4 - quarter
+    {440, 500}, // A4 - half
+    {352, 500}, // F4 - half
+    {396, 500}, // G4 - half
+    {352, 1000},// F4 - whole
+
+    {0, 0}      
+};
+
+
 int main(void) {
-	
+	// configure flash
+    configureFlash();
+
+    // configure clock
+
+    // configure PLL
+
+    while (1) {
+
+    }
 	
 }
