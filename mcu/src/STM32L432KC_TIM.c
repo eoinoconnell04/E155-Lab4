@@ -7,16 +7,23 @@ File function: C functions to go along with TIM struct
 
 #include "STM32L432KC_TIM.h"
 
-// Sets up TIM15 for use
+// Function configureTIM16:
+// Sets up TIM15 for use for measuring duration of a note
+// Uses a prescaler of 700
+// No arguments
 void configureTIM15(void) {
     
     TIM15->CR1 &= ~(1<<0); // disable counter
-    TIM15->PSC = 700; // PSC = 700 (binary 1010111100)
+    TIM15->PSC = 700; // PSC = 700
     TIM15->EGR |= (1<<0); // trigger an update
     TIM15->CR1 |= (1<<0); // enable counter
 }
 
-// Sets up TIM16 for use
+// Function configureTIM16:
+// Sets up TIM16 for use for setting the frequency of a note
+// Uses a prescaler of 6
+// Uses duty cycle of 50%
+// No arguments
 void configureTIM16(void){
 
     // Set PWM mode
@@ -39,7 +46,9 @@ void configureTIM16(void){
     TIM16->CR1 |= (1 << 0); // enable counter
 }
 
-// Sets the frequency on TIM16
+// Function setFreq:
+// Sets the frequency (in Hz) on TIM16
+// Arguments: int freq specifies the frequency of a note in Hz
 void setFreq(int freq){
     if (freq == 0){
         // If freq == 0 it is supposed to be silent
@@ -54,8 +63,10 @@ void setFreq(int freq){
     }
 }
 
+// Function setDur:
 // Sets the delay (in ms) on TIM15
 // Num cycles delay = (ARR+1)*(PSC+1)
+// Arguments: int dur specifies the duration of a note in ms
 void setDur(int dur){
     int cycles_per_ms = 80000000/1000/701; // 80 MHz / (1 s to 1000 ms)/ (Prescaler + 1) 
 

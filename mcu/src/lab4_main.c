@@ -191,14 +191,14 @@ int main(void) {
 
     // use pin 6
     pinMode(6, GPIO_ALT); // set pin 6 to alt function
-    GPIO->AFRL &= ~(0b1111<<4*6);
+    GPIO->AFRL &= ~(0b1111<<4*6); // clear alt func bits
     GPIO->AFRL |= (14<<4*6); // set pin 6 to alt func 14
 
     // Configure TIM15 and TIM16
     // TIM15 will handle note duration
     // TIM16 will handle note frequency
     configureTIM15();
-    configureTIM16(); ;
+    configureTIM16();
 
     // For testing frequency:
     /*
